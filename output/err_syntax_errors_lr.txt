@@ -1,0 +1,6 @@
+========================================= COMPILATION ERROR LOG =========================================
+Syntactic Error [Line 8, Col 3]: Syntax error. No transition in SLR(1) table (Found: 'y')
+Syntactic Error [Line 14, Col 13]: Syntax error. No transition in SLR(1) table (Found: 'y')
+--------------------------------------------------------------------------------------------------------
+Total Errors: 2
+========================================================================================================

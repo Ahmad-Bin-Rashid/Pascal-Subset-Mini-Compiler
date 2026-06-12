@@ -1,0 +1,43 @@
+Program: ValidProg3
+  Declarations:
+    ConstDecl: THIRTY = 30
+    ConstDecl: TRUEVAL = true
+    VarDecl: userInput, calc : integer
+    VarDecl: flag : boolean
+  Body:
+    CompoundStmt:
+      Write:
+        Literal: 'Enter integer value: ' (string)
+      Readln:
+        Identifier: userInput
+      If:
+        Cond:
+          BinaryOp: <
+            Identifier: userInput
+            Identifier: THIRTY
+        Then:
+          CompoundStmt:
+            Assign: calc
+              Expr:
+                BinaryOp: *
+                  Identifier: userInput
+                  Literal: '2' (integer)
+            Assign: flag
+              Expr:
+                Identifier: TRUEVAL
+        Else:
+          CompoundStmt:
+            Assign: calc
+              Expr:
+                BinaryOp: -
+                  Identifier: userInput
+                  Identifier: THIRTY
+            Assign: flag
+              Expr:
+                Literal: 'false' (boolean)
+      Writeln:
+        Literal: 'Calculated result: ' (string)
+        Identifier: calc
+      Writeln:
+        Literal: 'Flag condition: ' (string)
+        Identifier: flag

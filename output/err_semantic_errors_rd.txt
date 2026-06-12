@@ -1,0 +1,9 @@
+========================================= COMPILATION ERROR LOG =========================================
+Semantic Error [Line 9, Col 3]: Duplicate declaration of variable: x
+Semantic Error [Line 17, Col 3]: Cannot assign to constant: LIMIT
+Semantic Error [Line 18, Col 8]: Undeclared identifier: z
+Semantic Error [Line 19, Col 3]: Parameter count mismatch in call to check (Expected: 1, got: 2)
+Semantic Error [Line 20, Col 3]: Identifier x is not callable
+--------------------------------------------------------------------------------------------------------
+Total Errors: 5
+========================================================================================================

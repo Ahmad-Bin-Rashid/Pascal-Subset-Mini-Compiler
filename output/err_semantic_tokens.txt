@@ -1,0 +1,67 @@
+Token stream for: test/err_semantic.pas
+--------------------------------------------------------------------------------
+Token Type           | Lexeme               | Line | Col
+--------------------------------------------------------------------------------
+PROGRAM              | program              | 1    | 1
+IDENTIFIER           | ErrSemantic          | 1    | 9
+SEMICOLON            | ;                    | 1    | 20
+CONST                | const                | 3    | 1
+IDENTIFIER           | LIMIT                | 4    | 3
+EQUAL                | =                    | 4    | 9
+NUM_INT              | 50                   | 4    | 11
+SEMICOLON            | ;                    | 4    | 13
+VAR                  | var                  | 6    | 1
+IDENTIFIER           | x                    | 7    | 3
+COLON                | :                    | 7    | 5
+INTEGER              | integer              | 7    | 7
+SEMICOLON            | ;                    | 7    | 14
+IDENTIFIER           | x                    | 8    | 3
+COLON                | :                    | 8    | 5
+BOOLEAN              | boolean              | 8    | 7
+SEMICOLON            | ;                    | 8    | 14
+IDENTIFIER           | y                    | 9    | 3
+COLON                | :                    | 9    | 5
+INTEGER              | integer              | 9    | 7
+SEMICOLON            | ;                    | 9    | 14
+PROCEDURE            | procedure            | 11   | 1
+IDENTIFIER           | check                | 11   | 11
+LPAREN               | (                    | 11   | 16
+IDENTIFIER           | val                  | 11   | 17
+COLON                | :                    | 11   | 21
+INTEGER              | integer              | 11   | 23
+RPAREN               | )                    | 11   | 30
+SEMICOLON            | ;                    | 11   | 31
+BEGIN                | begin                | 12   | 1
+WRITELN              | writeln              | 13   | 3
+LPAREN               | (                    | 13   | 10
+IDENTIFIER           | val                  | 13   | 11
+RPAREN               | )                    | 13   | 14
+SEMICOLON            | ;                    | 13   | 15
+END                  | end                  | 14   | 1
+SEMICOLON            | ;                    | 14   | 4
+BEGIN                | begin                | 16   | 1
+IDENTIFIER           | LIMIT                | 17   | 3
+ASSIGN               | :=                   | 17   | 9
+NUM_INT              | 100                  | 17   | 12
+SEMICOLON            | ;                    | 17   | 15
+IDENTIFIER           | y                    | 18   | 3
+ASSIGN               | :=                   | 18   | 5
+IDENTIFIER           | z                    | 18   | 8
+PLUS                 | +                    | 18   | 10
+NUM_INT              | 10                   | 18   | 12
+SEMICOLON            | ;                    | 18   | 14
+IDENTIFIER           | check                | 19   | 3
+LPAREN               | (                    | 19   | 8
+NUM_INT              | 10                   | 19   | 9
+COMMA                | ,                    | 19   | 11
+NUM_INT              | 20                   | 19   | 13
+RPAREN               | )                    | 19   | 15
+SEMICOLON            | ;                    | 19   | 16
+IDENTIFIER           | x                    | 20   | 3
+LPAREN               | (                    | 20   | 4
+NUM_INT              | 5                    | 20   | 5
+RPAREN               | )                    | 20   | 6
+SEMICOLON            | ;                    | 20   | 7
+END                  | end                  | 21   | 1
+DOT                  | .                    | 21   | 4
+END_OF_FILE          |                      | 22   | 1

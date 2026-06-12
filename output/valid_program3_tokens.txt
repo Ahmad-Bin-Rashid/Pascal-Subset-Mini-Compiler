@@ -1,0 +1,86 @@
+Token stream for: test/valid_program3.pas
+--------------------------------------------------------------------------------
+Token Type           | Lexeme               | Line | Col
+--------------------------------------------------------------------------------
+PROGRAM              | program              | 1    | 1
+IDENTIFIER           | ValidProg3           | 1    | 9
+SEMICOLON            | ;                    | 1    | 19
+CONST                | const                | 3    | 1
+IDENTIFIER           | THIRTY               | 4    | 3
+EQUAL                | =                    | 4    | 10
+NUM_INT              | 30                   | 4    | 12
+SEMICOLON            | ;                    | 4    | 14
+IDENTIFIER           | TRUEVAL              | 5    | 3
+EQUAL                | =                    | 5    | 11
+TRUE                 | true                 | 5    | 13
+SEMICOLON            | ;                    | 5    | 17
+VAR                  | var                  | 7    | 1
+IDENTIFIER           | userInput            | 8    | 3
+COMMA                | ,                    | 8    | 12
+IDENTIFIER           | calc                 | 8    | 14
+COLON                | :                    | 8    | 19
+INTEGER              | integer              | 8    | 21
+SEMICOLON            | ;                    | 8    | 28
+IDENTIFIER           | flag                 | 9    | 3
+COLON                | :                    | 9    | 8
+BOOLEAN              | boolean              | 9    | 10
+SEMICOLON            | ;                    | 9    | 17
+BEGIN                | begin                | 11   | 1
+WRITE                | write                | 12   | 3
+LPAREN               | (                    | 12   | 8
+STRING_LIT           | Enter integer value:  | 12   | 9
+RPAREN               | )                    | 12   | 32
+SEMICOLON            | ;                    | 12   | 33
+READLN               | readln               | 13   | 3
+LPAREN               | (                    | 13   | 9
+IDENTIFIER           | userInput            | 13   | 10
+RPAREN               | )                    | 13   | 19
+SEMICOLON            | ;                    | 13   | 20
+IF                   | if                   | 15   | 3
+IDENTIFIER           | userInput            | 15   | 6
+LESS                 | <                    | 15   | 16
+IDENTIFIER           | THIRTY               | 15   | 18
+THEN                 | then                 | 15   | 25
+BEGIN                | begin                | 16   | 3
+IDENTIFIER           | calc                 | 17   | 5
+ASSIGN               | :=                   | 17   | 10
+IDENTIFIER           | userInput            | 17   | 13
+STAR                 | *                    | 17   | 23
+NUM_INT              | 2                    | 17   | 25
+SEMICOLON            | ;                    | 17   | 26
+IDENTIFIER           | flag                 | 18   | 5
+ASSIGN               | :=                   | 18   | 10
+IDENTIFIER           | TRUEVAL              | 18   | 13
+SEMICOLON            | ;                    | 18   | 20
+END                  | end                  | 19   | 3
+ELSE                 | else                 | 20   | 3
+BEGIN                | begin                | 21   | 3
+IDENTIFIER           | calc                 | 22   | 5
+ASSIGN               | :=                   | 22   | 10
+IDENTIFIER           | userInput            | 22   | 13
+MINUS                | -                    | 22   | 23
+IDENTIFIER           | THIRTY               | 22   | 25
+SEMICOLON            | ;                    | 22   | 31
+IDENTIFIER           | flag                 | 23   | 5
+ASSIGN               | :=                   | 23   | 10
+FALSE                | false                | 23   | 13
+SEMICOLON            | ;                    | 23   | 18
+END                  | end                  | 24   | 3
+SEMICOLON            | ;                    | 24   | 6
+WRITELN              | writeln              | 26   | 3
+LPAREN               | (                    | 26   | 10
+STRING_LIT           | Calculated result:   | 26   | 11
+COMMA                | ,                    | 26   | 32
+IDENTIFIER           | calc                 | 26   | 34
+RPAREN               | )                    | 26   | 38
+SEMICOLON            | ;                    | 26   | 39
+WRITELN              | writeln              | 27   | 3
+LPAREN               | (                    | 27   | 10
+STRING_LIT           | Flag condition:      | 27   | 11
+COMMA                | ,                    | 27   | 29
+IDENTIFIER           | flag                 | 27   | 31
+RPAREN               | )                    | 27   | 35
+SEMICOLON            | ;                    | 27   | 36
+END                  | end                  | 28   | 1
+DOT                  | .                    | 28   | 4
+END_OF_FILE          |                      | 29   | 1

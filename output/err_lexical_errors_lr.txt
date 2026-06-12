@@ -1,0 +1,7 @@
+========================================= COMPILATION ERROR LOG =========================================
+Syntactic Error [Line 5, Col 7]: Syntax error. No transition in SLR(1) table (Found: 'string')
+Syntactic Error [Line 9, Col 12]: Syntax error. No transition in SLR(1) table (Found: '@')
+Syntactic Error [Line 10, Col 8]: Syntax error. No transition in SLR(1) table (Found: 'unterminated string;')
+--------------------------------------------------------------------------------------------------------
+Total Errors: 3
+========================================================================================================

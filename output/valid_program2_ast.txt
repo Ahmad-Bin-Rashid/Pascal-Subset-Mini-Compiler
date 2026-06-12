@@ -1,0 +1,48 @@
+Program: ValidProg2
+  Declarations:
+    VarDecl: arr : array[1..10] of integer
+    VarDecl: i, sum : integer
+  Body:
+    CompoundStmt:
+      Assign: i
+        Expr:
+          Literal: '1' (integer)
+      While:
+        Cond:
+          BinaryOp: <=
+            Identifier: i
+            Literal: '10' (integer)
+        Body:
+          CompoundStmt:
+            Assign: arr
+              Index:
+                Identifier: i
+              Expr:
+                BinaryOp: *
+                  Identifier: i
+                  Literal: '5' (integer)
+            Assign: i
+              Expr:
+                BinaryOp: +
+                  Identifier: i
+                  Literal: '1' (integer)
+      Assign: sum
+        Expr:
+          Literal: '0' (integer)
+      For: i
+        Start:
+          Literal: '1' (integer)
+        End:
+          Literal: '10' (integer)
+        Body:
+          CompoundStmt:
+            Assign: sum
+              Expr:
+                BinaryOp: +
+                  Identifier: sum
+                  Identifier: arr
+                    ArrayIndex:
+                      Identifier: i
+      Writeln:
+        Literal: 'Calculated Array Sum: ' (string)
+        Identifier: sum

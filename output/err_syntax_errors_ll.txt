@@ -1,0 +1,6 @@
+========================================= COMPILATION ERROR LOG =========================================
+Syntactic Error [Line 8, Col 3]: No transition in LL(1) table for non-terminal 'FactorTail' on lookahead 'id' (Found: 'y')
+Syntactic Error [Line 14, Col 13]: No transition in LL(1) table for non-terminal 'FactorIdentTail' on lookahead 'id' (Found: 'y')
+--------------------------------------------------------------------------------------------------------
+Total Errors: 2
+========================================================================================================

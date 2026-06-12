@@ -1,0 +1,91 @@
+Program: ValidProg1
+  Declarations:
+    ConstDecl: MAX = 100
+    ConstDecl: PI = 3.1415
+    ConstDecl: BANNER = Compiler Project Demo
+    VarDecl: x, y, result : integer
+    VarDecl: flag : boolean
+    ProcedureDecl: greet
+      Parameters:
+        times : integer
+      Local Declarations:
+        VarDecl: i : integer
+      Body:
+        CompoundStmt:
+          For: i
+            Start:
+              Literal: '1' (integer)
+            End:
+              Identifier: times
+            Body:
+              CompoundStmt:
+                Writeln:
+                  Identifier: BANNER
+    FunctionDecl: computeSquare
+      Parameters:
+        val : integer
+      ReturnType: integer
+      Body:
+        CompoundStmt:
+          Assign: computeSquare
+            Expr:
+              BinaryOp: *
+                Identifier: val
+                Identifier: val
+    FunctionDecl: checkGreater
+      Parameters:
+        a : integer
+        b : integer
+      ReturnType: boolean
+      Body:
+        CompoundStmt:
+          If:
+            Cond:
+              BinaryOp: >
+                Identifier: a
+                Identifier: b
+            Then:
+              Assign: checkGreater
+                Expr:
+                  Literal: 'true' (boolean)
+            Else:
+              Assign: checkGreater
+                Expr:
+                  Literal: 'false' (boolean)
+  Body:
+    CompoundStmt:
+      Assign: x
+        Expr:
+          Literal: '10' (integer)
+      Assign: y
+        Expr:
+          Literal: '20' (integer)
+      Call: greet
+        Arguments:
+          Literal: '3' (integer)
+      If:
+        Cond:
+          Call: checkGreater
+            Arguments:
+              Identifier: y
+              Identifier: x
+        Then:
+          CompoundStmt:
+            Assign: result
+              Expr:
+                Call: computeSquare
+                  Arguments:
+                    Identifier: y
+            Writeln:
+              Literal: 'Result is ' (string)
+              Identifier: result
+        Else:
+          CompoundStmt:
+            Assign: result
+              Expr:
+                Call: computeSquare
+                  Arguments:
+                    Identifier: x
+            Writeln:
+              Literal: 'Result is ' (string)
+              Identifier: result

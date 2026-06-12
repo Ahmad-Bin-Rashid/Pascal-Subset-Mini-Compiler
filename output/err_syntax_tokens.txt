@@ -1,0 +1,46 @@
+Token stream for: test/err_syntax.pas
+--------------------------------------------------------------------------------
+Token Type           | Lexeme               | Line | Col
+--------------------------------------------------------------------------------
+PROGRAM              | program              | 1    | 1
+IDENTIFIER           | ErrSyntax            | 1    | 9
+SEMICOLON            | ;                    | 1    | 18
+VAR                  | var                  | 3    | 1
+IDENTIFIER           | x                    | 4    | 3
+COMMA                | ,                    | 4    | 4
+IDENTIFIER           | y                    | 4    | 6
+COLON                | :                    | 4    | 8
+INTEGER              | integer              | 4    | 10
+SEMICOLON            | ;                    | 4    | 17
+BEGIN                | begin                | 6    | 1
+IDENTIFIER           | x                    | 7    | 3
+ASSIGN               | :=                   | 7    | 5
+NUM_INT              | 10                   | 7    | 8
+IDENTIFIER           | y                    | 8    | 3
+ASSIGN               | :=                   | 8    | 5
+NUM_INT              | 20                   | 8    | 8
+SEMICOLON            | ;                    | 8    | 10
+IF                   | if                   | 9    | 3
+IDENTIFIER           | x                    | 9    | 6
+GREATER              | >                    | 9    | 8
+IDENTIFIER           | y                    | 9    | 10
+THEN                 | then                 | 9    | 12
+WRITELN              | writeln              | 10   | 5
+LPAREN               | (                    | 10   | 12
+STRING_LIT           | Greater              | 10   | 13
+RPAREN               | )                    | 10   | 22
+ELSE                 | else                 | 11   | 3
+WRITELN              | writeln              | 12   | 5
+LPAREN               | (                    | 12   | 12
+STRING_LIT           | Lesser               | 12   | 13
+RPAREN               | )                    | 12   | 21
+SEMICOLON            | ;                    | 12   | 22
+WRITELN              | writeln              | 14   | 3
+LPAREN               | (                    | 14   | 10
+IDENTIFIER           | x                    | 14   | 11
+IDENTIFIER           | y                    | 14   | 13
+RPAREN               | )                    | 14   | 14
+SEMICOLON            | ;                    | 14   | 15
+END                  | end                  | 15   | 1
+DOT                  | .                    | 15   | 4
+END_OF_FILE          |                      | 16   | 1

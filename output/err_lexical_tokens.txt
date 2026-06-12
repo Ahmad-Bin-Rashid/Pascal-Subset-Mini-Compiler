@@ -1,0 +1,34 @@
+Token stream for: test/err_lexical.pas
+--------------------------------------------------------------------------------
+Token Type           | Lexeme               | Line | Col
+--------------------------------------------------------------------------------
+PROGRAM              | program              | 1    | 1
+IDENTIFIER           | ErrLexical           | 1    | 9
+SEMICOLON            | ;                    | 1    | 19
+VAR                  | var                  | 3    | 1
+IDENTIFIER           | x                    | 4    | 3
+COLON                | :                    | 4    | 5
+INTEGER              | integer              | 4    | 7
+SEMICOLON            | ;                    | 4    | 14
+IDENTIFIER           | s                    | 5    | 3
+COLON                | :                    | 5    | 5
+IDENTIFIER           | string               | 5    | 7
+SEMICOLON            | ;                    | 5    | 13
+BEGIN                | begin                | 7    | 1
+IDENTIFIER           | x                    | 8    | 3
+ASSIGN               | :=                   | 8    | 5
+NUM_INT              | 10                   | 8    | 8
+SEMICOLON            | ;                    | 8    | 10
+IDENTIFIER           | x                    | 9    | 3
+ASSIGN               | :=                   | 9    | 5
+IDENTIFIER           | x                    | 9    | 8
+PLUS                 | +                    | 9    | 10
+ERROR                | @                    | 9    | 12
+NUM_INT              | 5                    | 9    | 13
+SEMICOLON            | ;                    | 9    | 14
+IDENTIFIER           | s                    | 10   | 3
+ASSIGN               | :=                   | 10   | 5
+ERROR                | unterminated string; | 10   | 8
+END                  | end                  | 11   | 1
+DOT                  | .                    | 11   | 4
+END_OF_FILE          |                      | 12   | 1

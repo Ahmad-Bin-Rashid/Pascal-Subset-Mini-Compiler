@@ -1,0 +1,11 @@
+========================================= COMPILATION ERROR LOG =========================================
+Syntactic Error [Line 5, Col 7]: Expected type name (integer, real, boolean, char) (Found: 'string')
+Syntactic Error [Line 5, Col 7]: Expected ';' after type declaration (Found: 'string')
+Syntactic Error [Line 5, Col 13]: Expected ':' after identifier list (Found: ';')
+Syntactic Error [Line 5, Col 13]: Expected type name (integer, real, boolean, char) (Found: ';')
+Syntactic Error [Line 9, Col 12]: Expected expression factor (Found: '@')
+Syntactic Error [Line 9, Col 13]: Expected 'end' keyword (Found: '5')
+Syntactic Error [Line 9, Col 13]: Expected '.' at end of program (Found: '5')
+--------------------------------------------------------------------------------------------------------
+Total Errors: 7
+========================================================================================================

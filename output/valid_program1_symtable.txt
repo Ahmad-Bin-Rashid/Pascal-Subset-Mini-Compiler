@@ -1,0 +1,42 @@
+========================================= SYMBOL TABLE HISTORY =========================================
+Scope Name: "global" | Scope Level: 0
+--------------------------------------------------------------------------------------------------------
+Name           Kind        Type           Line      Extra Info               
+--------------------------------------------------------------------------------------------------------
+checkGreater   function    boolean        27        Params: (a:integer, b:integer) Return Type: boolean
+computeSquare  function    integer        22        Params: (val:integer) Return Type: integer
+greet          procedure   void           12        Params: (times:integer)
+result         variable    integer        10        
+y              variable    integer        10        
+flag           variable    boolean        12        
+x              variable    integer        10        
+BANNER         constant    string         6         
+PI             constant    real           5         
+MAX            constant    integer        4         
+========================================================================================================
+
+Scope Name: "greet" | Scope Level: 1
+--------------------------------------------------------------------------------------------------------
+Name           Kind        Type           Line      Extra Info               
+--------------------------------------------------------------------------------------------------------
+i              variable    integer        15        
+times          variable    integer        12        
+========================================================================================================
+
+Scope Name: "computeSquare" | Scope Level: 1
+--------------------------------------------------------------------------------------------------------
+Name           Kind        Type           Line      Extra Info               
+--------------------------------------------------------------------------------------------------------
+computeSquare  variable    integer        22        
+val            variable    integer        22        
+========================================================================================================
+
+Scope Name: "checkGreater" | Scope Level: 1
+--------------------------------------------------------------------------------------------------------
+Name           Kind        Type           Line      Extra Info               
+--------------------------------------------------------------------------------------------------------
+checkGreater   variable    boolean        27        
+b              variable    integer        27        
+a              variable    integer        27        
+========================================================================================================
+

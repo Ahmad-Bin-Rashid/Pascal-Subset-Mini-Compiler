@@ -1,0 +1,7 @@
+========================================= COMPILATION ERROR LOG =========================================
+Syntactic Error [Line 5, Col 7]: No transition in LL(1) table for non-terminal 'Type' on lookahead 'id' (Found: 'string')
+Syntactic Error [Line 9, Col 12]: No transition in LL(1) table for non-terminal 'Term' on lookahead '' (Found: '@')
+Syntactic Error [Line 10, Col 8]: No transition in LL(1) table for non-terminal 'Expr' on lookahead '' (Found: 'unterminated string;')
+--------------------------------------------------------------------------------------------------------
+Total Errors: 3
+========================================================================================================

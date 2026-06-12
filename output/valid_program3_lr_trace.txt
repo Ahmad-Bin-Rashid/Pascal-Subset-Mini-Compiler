@@ -1,0 +1,279 @@
+========================================= LR PARSING TRACE =========================================
+Symbol Stack                     | State Stack            | Lookahead       | Action
+----------------------------------------------------------------------------------------------------
+$                                | 0                      | program         | Shift to State 2
+$ program                        | 0 2                    | ValidProg3      | Shift to State 3
+$ program id                     | 0 2 3                  | ;               | Shift to State 4
+$ program id ;                   | 0 2 3 4                | const           | Shift to State 7
+$ program id ; const             | 0 2 3 4 7              | THIRTY          | Shift to State 13
+$ program id ; const id          | 0 2 3 4 7 13           | =               | Shift to State 43
+$ program id ; const id =        | 0 2 3 4 7 13 43        | 30              | Shift to State 79
+$ program id ; const id = num    | 0 2 3 4 7 13 43 79     | ;               | Reduce by Rule 8 (ConstVal -> num )
+...m id ; const id = ConstVal    | 0 2 3 4 7 13 43 77     | ;               | Shift to State 133
+...id ; const id = ConstVal ;    | ...4 7 13 43 77 133    | TRUEVAL         | Shift to State 160
+...; const id = ConstVal ; id    | ...13 43 77 133 160    | =               | Shift to State 177
+...const id = ConstVal ; id =    | ...3 77 133 160 177    | true            | Shift to State 81
+... id = ConstVal ; id = true    | ...7 133 160 177 81    | ;               | Reduce by Rule 10 (ConstVal -> true )
+...= ConstVal ; id = ConstVal    | ... 133 160 177 185    | ;               | Shift to State 191
+...ConstVal ; id = ConstVal ;    | ... 160 177 185 191    | var             | Reduce by Rule 7 (ConstListTail -> epsilon)
+...= ConstVal ; ConstListTail    | ... 177 185 191 196    | var             | Reduce by Rule 6 (ConstListTail -> id = ConstVal ; ConstListTail )
+...= ConstVal ; ConstListTail    | ...13 43 77 133 159    | var             | Reduce by Rule 5 (ConstList -> id = ConstVal ; ConstListTail )
+...ogram id ; const ConstList    | 0 2 3 4 7 12           | var             | Reduce by Rule 3 (ConstDecl -> const ConstList )
+$ program id ; ConstDecl         | 0 2 3 4 5              | var             | Shift to State 9
+$ program id ; ConstDecl var     | 0 2 3 4 5 9            | userInput       | Shift to State 22
+...gram id ; ConstDecl var id    | 0 2 3 4 5 9 22         | ,               | Shift to State 51
+...am id ; ConstDecl var id ,    | 0 2 3 4 5 9 22 51      | calc            | Shift to State 95
+...id ; ConstDecl var id , id    | ...3 4 5 9 22 51 95    | :               | Reduce by Rule 19 (IdListTail -> epsilon)
+...ecl var id , id IdListTail    | ...5 9 22 51 95 141    | :               | Reduce by Rule 18 (IdListTail -> , id IdListTail )
+...onstDecl var id IdListTail    | 0 2 3 4 5 9 22 50      | :               | Reduce by Rule 17 (IdList -> id IdListTail )
+... id ; ConstDecl var IdList    | 0 2 3 4 5 9 20         | :               | Shift to State 49
+...d ; ConstDecl var IdList :    | 0 2 3 4 5 9 20 49      | integer         | Shift to State 93
+...tDecl var IdList : integer    | ...3 4 5 9 20 49 93    | ;               | Reduce by Rule 22 (SimpleType -> integer )
+...cl var IdList : SimpleType    | ...3 4 5 9 20 49 88    | ;               | Reduce by Rule 20 (Type -> SimpleType )
+...onstDecl var IdList : Type    | ...3 4 5 9 20 49 89    | ;               | Shift to State 139
+...stDecl var IdList : Type ;    | ...5 9 20 49 89 139    | flag            | Shift to State 22
+...ecl var IdList : Type ; id    | ... 20 49 89 139 22    | :               | Reduce by Rule 19 (IdListTail -> epsilon)
+...ist : Type ; id IdListTail    | ... 49 89 139 22 50    | :               | Reduce by Rule 17 (IdList -> id IdListTail )
+...var IdList : Type ; IdList    | ...20 49 89 139 166    | :               | Shift to State 179
+...r IdList : Type ; IdList :    | ...9 89 139 166 179    | boolean         | Shift to State 91
+... : Type ; IdList : boolean    | ...9 139 166 179 91    | ;               | Reduce by Rule 24 (SimpleType -> boolean )
+...Type ; IdList : SimpleType    | ...9 139 166 179 88    | ;               | Reduce by Rule 20 (Type -> SimpleType )
+...ist : Type ; IdList : Type    | ... 139 166 179 188    | ;               | Shift to State 193
+...t : Type ; IdList : Type ;    | ... 166 179 188 193    | begin           | Reduce by Rule 16 (VarListTail -> epsilon)
+...dList : Type ; VarListTail    | ... 179 188 193 198    | begin           | Reduce by Rule 15 (VarListTail -> IdList : Type ; VarListTail )
+...dList : Type ; VarListTail    | ...20 49 89 139 167    | begin           | Reduce by Rule 14 (VarList -> IdList : Type ; VarListTail )
+...id ; ConstDecl var VarList    | 0 2 3 4 5 9 21         | begin           | Reduce by Rule 12 (VarDecl -> var VarList )
+...ram id ; ConstDecl VarDecl    | 0 2 3 4 5 8            | begin           | Reduce by Rule 28 (ProcDecl -> epsilon)
+...ConstDecl VarDecl ProcDecl    | 0 2 3 4 5 8 15         | begin           | Reduce by Rule 2 (DeclPart -> ConstDecl VarDecl ProcDecl )
+$ program id ; DeclPart          | 0 2 3 4 6              | begin           | Shift to State 11
+$ program id ; DeclPart begin    | 0 2 3 4 6 11           | write           | Shift to State 41
+... id ; DeclPart begin write    | 0 2 3 4 6 11 41        | (               | Shift to State 75
+...d ; DeclPart begin write (    | 0 2 3 4 6 11 41 75     | Enter integer value:  | Shift to State 70
+...lPart begin write ( string    | ... 4 6 11 41 75 70    | )               | Reduce by Rule 95 (Factor -> string )
+...lPart begin write ( Factor    | ... 4 6 11 41 75 62    | )               | Reduce by Rule 87 (FactorTail -> epsilon)
+... write ( Factor FactorTail    | ... 11 41 75 62 103    | )               | Reduce by Rule 85 (Term -> Factor FactorTail )
+...eclPart begin write ( Term    | ... 4 6 11 41 75 64    | )               | Reduce by Rule 81 (TermTail -> epsilon)
+...egin write ( Term TermTail    | ... 11 41 75 64 119    | )               | Reduce by Rule 79 (SimpleExpr -> Term TermTail )
+...t begin write ( SimpleExpr    | ... 4 6 11 41 75 63    | )               | Reduce by Rule 72 (RelOpExpr -> epsilon)
+...ite ( SimpleExpr RelOpExpr    | ... 11 41 75 63 111    | )               | Reduce by Rule 70 (Expr -> SimpleExpr RelOpExpr )
+...eclPart begin write ( Expr    | ... 4 6 11 41 75 98    | )               | Reduce by Rule 56 (ExprListTail -> epsilon)
+... write ( Expr ExprListTail    | ... 11 41 75 98 144    | )               | Reduce by Rule 54 (ExprList -> Expr ExprListTail )
+...art begin write ( ExprList    | ...4 6 11 41 75 131    | )               | Shift to State 157
+...t begin write ( ExprList )    | ...11 41 75 131 157    | ;               | Reduce by Rule 58 (WriteStmt -> write ( ExprList ) )
+...; DeclPart begin WriteStmt    | 0 2 3 4 6 11 34        | ;               | Reduce by Rule 45 (SimpleStmt -> WriteStmt )
+... DeclPart begin SimpleStmt    | 0 2 3 4 6 11 29        | ;               | Reduce by Rule 42 (Stmt -> SimpleStmt )
+...m id ; DeclPart begin Stmt    | 0 2 3 4 6 11 30        | ;               | Shift to State 53
+...id ; DeclPart begin Stmt ;    | 0 2 3 4 6 11 30 53     | readln          | Shift to State 39
+...clPart begin Stmt ; readln    | ... 4 6 11 30 53 39    | (               | Shift to State 73
+...Part begin Stmt ; readln (    | ...6 11 30 53 39 73    | userInput       | Shift to State 22
+...t begin Stmt ; readln ( id    | ...1 30 53 39 73 22    | )               | Reduce by Rule 19 (IdListTail -> epsilon)
+...t ; readln ( id IdListTail    | ...0 53 39 73 22 50    | )               | Reduce by Rule 17 (IdList -> id IdListTail )
+...gin Stmt ; readln ( IdList    | ... 30 53 39 73 129    | )               | Shift to State 155
+...n Stmt ; readln ( IdList )    | ...53 39 73 129 155    | ;               | Reduce by Rule 59 (ReadStmt -> readln ( IdList ) )
+...Part begin Stmt ; ReadStmt    | ... 4 6 11 30 53 28    | ;               | Reduce by Rule 46 (SimpleStmt -> ReadStmt )
+...rt begin Stmt ; SimpleStmt    | ... 4 6 11 30 53 29    | ;               | Reduce by Rule 42 (Stmt -> SimpleStmt )
+...DeclPart begin Stmt ; Stmt    | ... 4 6 11 30 53 96    | ;               | Shift to State 53
+...clPart begin Stmt ; Stmt ;    | ...6 11 30 53 96 53    | if              | Shift to State 37
+...art begin Stmt ; Stmt ; if    | ...1 30 53 96 53 37    | userInput       | Shift to State 67
+... begin Stmt ; Stmt ; if id    | ...0 53 96 53 37 67    | <               | Reduce by Rule 53 (ActualParams -> epsilon)
+... Stmt ; if id ActualParams    | ... 96 53 37 67 124    | <               | Reduce by Rule 101 (FactorIdentTail -> ActualParams )
+...mt ; if id FactorIdentTail    | ... 96 53 37 67 125    | <               | Reduce by Rule 93 (Factor -> id FactorIdentTail )
+...in Stmt ; Stmt ; if Factor    | ...0 53 96 53 37 62    | <               | Reduce by Rule 87 (FactorTail -> epsilon)
+...tmt ; if Factor FactorTail    | ... 96 53 37 62 103    | <               | Reduce by Rule 85 (Term -> Factor FactorTail )
+...egin Stmt ; Stmt ; if Term    | ...0 53 96 53 37 64    | <               | Reduce by Rule 81 (TermTail -> epsilon)
+... ; Stmt ; if Term TermTail    | ... 96 53 37 64 119    | <               | Reduce by Rule 79 (SimpleExpr -> Term TermTail )
+...tmt ; Stmt ; if SimpleExpr    | ...0 53 96 53 37 63    | <               | Shift to State 112
+...t ; Stmt ; if SimpleExpr <    | ... 96 53 37 63 112    | THIRTY          | Reduce by Rule 75 (RelOp -> < )
+...Stmt ; if SimpleExpr RelOp    | ... 96 53 37 63 110    | THIRTY          | Shift to State 67
+...t ; if SimpleExpr RelOp id    | ... 53 37 63 110 67    | then            | Reduce by Rule 53 (ActualParams -> epsilon)
+...Expr RelOp id ActualParams    | ...37 63 110 67 124    | then            | Reduce by Rule 101 (FactorIdentTail -> ActualParams )
+...r RelOp id FactorIdentTail    | ...37 63 110 67 125    | then            | Reduce by Rule 93 (Factor -> id FactorIdentTail )
+...if SimpleExpr RelOp Factor    | ... 53 37 63 110 62    | then            | Reduce by Rule 87 (FactorTail -> epsilon)
+...pr RelOp Factor FactorTail    | ...37 63 110 62 103    | then            | Reduce by Rule 85 (Term -> Factor FactorTail )
+...; if SimpleExpr RelOp Term    | ... 53 37 63 110 64    | then            | Reduce by Rule 81 (TermTail -> epsilon)
+...leExpr RelOp Term TermTail    | ...37 63 110 64 119    | then            | Reduce by Rule 79 (SimpleExpr -> Term TermTail )
+...impleExpr RelOp SimpleExpr    | ...53 37 63 110 150    | then            | Reduce by Rule 71 (RelOpExpr -> RelOp SimpleExpr )
+... ; if SimpleExpr RelOpExpr    | ... 96 53 37 63 111    | then            | Reduce by Rule 70 (Expr -> SimpleExpr RelOpExpr )
+...egin Stmt ; Stmt ; if Expr    | ...0 53 96 53 37 61    | then            | Shift to State 102
+...Stmt ; Stmt ; if Expr then    | ... 96 53 37 61 102    | begin           | Shift to State 11
+... Stmt ; if Expr then begin    | ... 53 37 61 102 11    | calc            | Shift to State 36
+...mt ; if Expr then begin id    | ... 37 61 102 11 36    | :=              | Shift to State 59
+...; if Expr then begin id :=    | ... 61 102 11 36 59    | userInput       | Shift to State 67
+...f Expr then begin id := id    | ... 102 11 36 59 67    | *               | Reduce by Rule 53 (ActualParams -> epsilon)
+...egin id := id ActualParams    | ... 11 36 59 67 124    | *               | Reduce by Rule 101 (FactorIdentTail -> ActualParams )
+...n id := id FactorIdentTail    | ... 11 36 59 67 125    | *               | Reduce by Rule 93 (Factor -> id FactorIdentTail )
+...pr then begin id := Factor    | ... 102 11 36 59 62    | *               | Shift to State 105
+... then begin id := Factor *    | ... 11 36 59 62 105    | 2               | Reduce by Rule 88 (MulOp -> * )
+...n begin id := Factor MulOp    | ... 11 36 59 62 104    | 2               | Shift to State 69
+...gin id := Factor MulOp num    | ... 36 59 62 104 69    | ;               | Reduce by Rule 94 (Factor -> num )
+... id := Factor MulOp Factor    | ...36 59 62 104 149    | ;               | Reduce by Rule 87 (FactorTail -> epsilon)
+...or MulOp Factor FactorTail    | ...9 62 104 149 174    | ;               | Reduce by Rule 86 (FactorTail -> MulOp Factor FactorTail )
+...in id := Factor FactorTail    | ... 11 36 59 62 103    | ;               | Reduce by Rule 85 (Term -> Factor FactorTail )
+...Expr then begin id := Term    | ... 102 11 36 59 64    | ;               | Reduce by Rule 81 (TermTail -> epsilon)
+... begin id := Term TermTail    | ... 11 36 59 64 119    | ;               | Reduce by Rule 79 (SimpleExpr -> Term TermTail )
+...hen begin id := SimpleExpr    | ... 102 11 36 59 63    | ;               | Reduce by Rule 72 (RelOpExpr -> epsilon)
+...id := SimpleExpr RelOpExpr    | ... 11 36 59 63 111    | ;               | Reduce by Rule 70 (Expr -> SimpleExpr RelOpExpr )
+...Expr then begin id := Expr    | ...102 11 36 59 100    | ;               | Reduce by Rule 49 (AssignOrCallTail -> := Expr )
+... begin id AssignOrCallTail    | ... 61 102 11 36 57    | ;               | Reduce by Rule 48 (AssignOrCall -> id AssignOrCallTail )
+...pr then begin AssignOrCall    | ... 37 61 102 11 24    | ;               | Reduce by Rule 44 (SimpleStmt -> AssignOrCall )
+...Expr then begin SimpleStmt    | ... 37 61 102 11 29    | ;               | Reduce by Rule 42 (Stmt -> SimpleStmt )
+... ; if Expr then begin Stmt    | ... 37 61 102 11 30    | ;               | Shift to State 53
+... if Expr then begin Stmt ;    | ... 61 102 11 30 53    | flag            | Shift to State 36
+... Expr then begin Stmt ; id    | ... 102 11 30 53 36    | :=              | Shift to State 59
+...pr then begin Stmt ; id :=    | ...2 11 30 53 36 59    | TRUEVAL         | Shift to State 67
+...then begin Stmt ; id := id    | ...1 30 53 36 59 67    | ;               | Reduce by Rule 53 (ActualParams -> epsilon)
+...mt ; id := id ActualParams    | ... 53 36 59 67 124    | ;               | Reduce by Rule 101 (FactorIdentTail -> ActualParams )
+...; id := id FactorIdentTail    | ... 53 36 59 67 125    | ;               | Reduce by Rule 93 (Factor -> id FactorIdentTail )
+... begin Stmt ; id := Factor    | ...1 30 53 36 59 62    | ;               | Reduce by Rule 87 (FactorTail -> epsilon)
+... ; id := Factor FactorTail    | ... 53 36 59 62 103    | ;               | Reduce by Rule 85 (Term -> Factor FactorTail )
+...en begin Stmt ; id := Term    | ...1 30 53 36 59 64    | ;               | Reduce by Rule 81 (TermTail -> epsilon)
+...Stmt ; id := Term TermTail    | ... 53 36 59 64 119    | ;               | Reduce by Rule 79 (SimpleExpr -> Term TermTail )
+...in Stmt ; id := SimpleExpr    | ...1 30 53 36 59 63    | ;               | Reduce by Rule 72 (RelOpExpr -> epsilon)
+...id := SimpleExpr RelOpExpr    | ... 53 36 59 63 111    | ;               | Reduce by Rule 70 (Expr -> SimpleExpr RelOpExpr )
+...en begin Stmt ; id := Expr    | ... 30 53 36 59 100    | ;               | Reduce by Rule 49 (AssignOrCallTail -> := Expr )
+...Stmt ; id AssignOrCallTail    | ...2 11 30 53 36 57    | ;               | Reduce by Rule 48 (AssignOrCall -> id AssignOrCallTail )
+... begin Stmt ; AssignOrCall    | ... 102 11 30 53 24    | ;               | Reduce by Rule 44 (SimpleStmt -> AssignOrCall )
+...en begin Stmt ; SimpleStmt    | ... 102 11 30 53 29    | ;               | Reduce by Rule 42 (Stmt -> SimpleStmt )
+...xpr then begin Stmt ; Stmt    | ... 102 11 30 53 96    | ;               | Shift to State 53
+...r then begin Stmt ; Stmt ;    | ...2 11 30 53 96 53    | end             | Reduce by Rule 47 (SimpleStmt -> epsilon)
+...n Stmt ; Stmt ; SimpleStmt    | ...1 30 53 96 53 29    | end             | Reduce by Rule 42 (Stmt -> SimpleStmt )
+...n begin Stmt ; Stmt ; Stmt    | ...1 30 53 96 53 96    | end             | Reduce by Rule 41 (StmtListTail -> epsilon)
+...; Stmt ; Stmt StmtListTail    | ... 53 96 53 96 142    | end             | Reduce by Rule 40 (StmtListTail -> ; Stmt StmtListTail )
+...n Stmt ; Stmt StmtListTail    | ... 11 30 53 96 142    | end             | Reduce by Rule 40 (StmtListTail -> ; Stmt StmtListTail )
+...en begin Stmt StmtListTail    | ... 61 102 11 30 52    | end             | Reduce by Rule 39 (StmtList -> Stmt StmtListTail )
+...f Expr then begin StmtList    | ... 37 61 102 11 31    | end             | Shift to State 54
+...pr then begin StmtList end    | ... 61 102 11 31 54    | else            | Reduce by Rule 38 (CompoundStmt -> begin StmtList end )
+... if Expr then CompoundStmt    | ... 53 37 61 102 25    | else            | Reduce by Rule 61 (StructuredStmt -> CompoundStmt )
+...f Expr then StructuredStmt    | ... 53 37 61 102 32    | else            | Reduce by Rule 43 (Stmt -> StructuredStmt )
+...; Stmt ; if Expr then Stmt    | ...53 37 61 102 148    | else            | Shift to State 173
+...t ; if Expr then Stmt else    | ...7 61 102 148 173    | begin           | Shift to State 11
+... Expr then Stmt else begin    | ...1 102 148 173 11    | calc            | Shift to State 36
+...pr then Stmt else begin id    | ...02 148 173 11 36    | :=              | Shift to State 59
+...then Stmt else begin id :=    | ...148 173 11 36 59    | userInput       | Shift to State 67
+...n Stmt else begin id := id    | ... 173 11 36 59 67    | -               | Reduce by Rule 53 (ActualParams -> epsilon)
+...egin id := id ActualParams    | ... 11 36 59 67 124    | -               | Reduce by Rule 101 (FactorIdentTail -> ActualParams )
+...n id := id FactorIdentTail    | ... 11 36 59 67 125    | -               | Reduce by Rule 93 (Factor -> id FactorIdentTail )
+...mt else begin id := Factor    | ... 173 11 36 59 62    | -               | Reduce by Rule 87 (FactorTail -> epsilon)
+...in id := Factor FactorTail    | ... 11 36 59 62 103    | -               | Reduce by Rule 85 (Term -> Factor FactorTail )
+...Stmt else begin id := Term    | ... 173 11 36 59 64    | -               | Shift to State 121
+...mt else begin id := Term -    | ... 11 36 59 64 121    | THIRTY          | Reduce by Rule 83 (AddOp -> - )
+...lse begin id := Term AddOp    | ... 11 36 59 64 118    | THIRTY          | Shift to State 67
+... begin id := Term AddOp id    | ... 36 59 64 118 67    | ;               | Reduce by Rule 53 (ActualParams -> epsilon)
+...Term AddOp id ActualParams    | ...59 64 118 67 124    | ;               | Reduce by Rule 101 (FactorIdentTail -> ActualParams )
+...m AddOp id FactorIdentTail    | ...59 64 118 67 125    | ;               | Reduce by Rule 93 (Factor -> id FactorIdentTail )
+...in id := Term AddOp Factor    | ... 36 59 64 118 62    | ;               | Reduce by Rule 87 (FactorTail -> epsilon)
+...rm AddOp Factor FactorTail    | ...59 64 118 62 103    | ;               | Reduce by Rule 85 (Term -> Factor FactorTail )
+...egin id := Term AddOp Term    | ...36 59 64 118 151    | ;               | Reduce by Rule 81 (TermTail -> epsilon)
+...= Term AddOp Term TermTail    | ...9 64 118 151 175    | ;               | Reduce by Rule 80 (TermTail -> AddOp Term TermTail )
+... begin id := Term TermTail    | ... 11 36 59 64 119    | ;               | Reduce by Rule 79 (SimpleExpr -> Term TermTail )
+...lse begin id := SimpleExpr    | ... 173 11 36 59 63    | ;               | Reduce by Rule 72 (RelOpExpr -> epsilon)
+...id := SimpleExpr RelOpExpr    | ... 11 36 59 63 111    | ;               | Reduce by Rule 70 (Expr -> SimpleExpr RelOpExpr )
+...Stmt else begin id := Expr    | ...173 11 36 59 100    | ;               | Reduce by Rule 49 (AssignOrCallTail -> := Expr )
+... begin id AssignOrCallTail    | ...148 173 11 36 57    | ;               | Reduce by Rule 48 (AssignOrCall -> id AssignOrCallTail )
+...mt else begin AssignOrCall    | ...02 148 173 11 24    | ;               | Reduce by Rule 44 (SimpleStmt -> AssignOrCall )
+...Stmt else begin SimpleStmt    | ...02 148 173 11 29    | ;               | Reduce by Rule 42 (Stmt -> SimpleStmt )
+... then Stmt else begin Stmt    | ...02 148 173 11 30    | ;               | Shift to State 53
+...hen Stmt else begin Stmt ;    | ...148 173 11 30 53    | flag            | Shift to State 36
+... Stmt else begin Stmt ; id    | ... 173 11 30 53 36    | :=              | Shift to State 59
+...mt else begin Stmt ; id :=    | ...3 11 30 53 36 59    | false           | Shift to State 66
+...e begin Stmt ; id := false    | ...1 30 53 36 59 66    | ;               | Reduce by Rule 97 (Factor -> false )
+... begin Stmt ; id := Factor    | ...1 30 53 36 59 62    | ;               | Reduce by Rule 87 (FactorTail -> epsilon)
+... ; id := Factor FactorTail    | ... 53 36 59 62 103    | ;               | Reduce by Rule 85 (Term -> Factor FactorTail )
+...se begin Stmt ; id := Term    | ...1 30 53 36 59 64    | ;               | Reduce by Rule 81 (TermTail -> epsilon)
+...Stmt ; id := Term TermTail    | ... 53 36 59 64 119    | ;               | Reduce by Rule 79 (SimpleExpr -> Term TermTail )
+...in Stmt ; id := SimpleExpr    | ...1 30 53 36 59 63    | ;               | Reduce by Rule 72 (RelOpExpr -> epsilon)
+...id := SimpleExpr RelOpExpr    | ... 53 36 59 63 111    | ;               | Reduce by Rule 70 (Expr -> SimpleExpr RelOpExpr )
+...se begin Stmt ; id := Expr    | ... 30 53 36 59 100    | ;               | Reduce by Rule 49 (AssignOrCallTail -> := Expr )
+...Stmt ; id AssignOrCallTail    | ...3 11 30 53 36 57    | ;               | Reduce by Rule 48 (AssignOrCall -> id AssignOrCallTail )
+... begin Stmt ; AssignOrCall    | ... 173 11 30 53 24    | ;               | Reduce by Rule 44 (SimpleStmt -> AssignOrCall )
+...se begin Stmt ; SimpleStmt    | ... 173 11 30 53 29    | ;               | Reduce by Rule 42 (Stmt -> SimpleStmt )
+...tmt else begin Stmt ; Stmt    | ... 173 11 30 53 96    | ;               | Shift to State 53
+...t else begin Stmt ; Stmt ;    | ...3 11 30 53 96 53    | end             | Reduce by Rule 47 (SimpleStmt -> epsilon)
+...n Stmt ; Stmt ; SimpleStmt    | ...1 30 53 96 53 29    | end             | Reduce by Rule 42 (Stmt -> SimpleStmt )
+...e begin Stmt ; Stmt ; Stmt    | ...1 30 53 96 53 96    | end             | Reduce by Rule 41 (StmtListTail -> epsilon)
+...; Stmt ; Stmt StmtListTail    | ... 53 96 53 96 142    | end             | Reduce by Rule 40 (StmtListTail -> ; Stmt StmtListTail )
+...n Stmt ; Stmt StmtListTail    | ... 11 30 53 96 142    | end             | Reduce by Rule 40 (StmtListTail -> ; Stmt StmtListTail )
+...se begin Stmt StmtListTail    | ...148 173 11 30 52    | end             | Reduce by Rule 39 (StmtList -> Stmt StmtListTail )
+...n Stmt else begin StmtList    | ...02 148 173 11 31    | end             | Shift to State 54
+...mt else begin StmtList end    | ...148 173 11 31 54    | ;               | Reduce by Rule 38 (CompoundStmt -> begin StmtList end )
+...hen Stmt else CompoundStmt    | ...1 102 148 173 25    | ;               | Reduce by Rule 61 (StructuredStmt -> CompoundStmt )
+...n Stmt else StructuredStmt    | ...1 102 148 173 32    | ;               | Reduce by Rule 43 (Stmt -> StructuredStmt )
+...f Expr then Stmt else Stmt    | ... 102 148 173 184    | ;               | Reduce by Rule 66 (ElsePart -> else Stmt )
+...if Expr then Stmt ElsePart    | ...7 61 102 148 172    | ;               | Reduce by Rule 65 (IfStmt -> if Expr then Stmt ElsePart )
+...begin Stmt ; Stmt ; IfStmt    | ...1 30 53 96 53 27    | ;               | Reduce by Rule 62 (StructuredStmt -> IfStmt )
+...mt ; Stmt ; StructuredStmt    | ...1 30 53 96 53 32    | ;               | Reduce by Rule 43 (Stmt -> StructuredStmt )
+...t begin Stmt ; Stmt ; Stmt    | ...1 30 53 96 53 96    | ;               | Shift to State 53
+...begin Stmt ; Stmt ; Stmt ;    | ...0 53 96 53 96 53    | writeln         | Shift to State 42
+...mt ; Stmt ; Stmt ; writeln    | ...3 96 53 96 53 42    | (               | Shift to State 76
+... ; Stmt ; Stmt ; writeln (    | ...6 53 96 53 42 76    | Calculated result:  | Shift to State 70
+... ; Stmt ; writeln ( string    | ...3 96 53 42 76 70    | ,               | Reduce by Rule 95 (Factor -> string )
+... ; Stmt ; writeln ( Factor    | ...3 96 53 42 76 62    | ,               | Reduce by Rule 87 (FactorTail -> epsilon)
+...riteln ( Factor FactorTail    | ... 53 42 76 62 103    | ,               | Reduce by Rule 85 (Term -> Factor FactorTail )
+...mt ; Stmt ; writeln ( Term    | ...3 96 53 42 76 64    | ,               | Reduce by Rule 81 (TermTail -> epsilon)
+... ; writeln ( Term TermTail    | ... 53 42 76 64 119    | ,               | Reduce by Rule 79 (SimpleExpr -> Term TermTail )
+...tmt ; writeln ( SimpleExpr    | ...3 96 53 42 76 63    | ,               | Reduce by Rule 72 (RelOpExpr -> epsilon)
+...eln ( SimpleExpr RelOpExpr    | ... 53 42 76 63 111    | ,               | Reduce by Rule 70 (Expr -> SimpleExpr RelOpExpr )
+...mt ; Stmt ; writeln ( Expr    | ...3 96 53 42 76 98    | ,               | Shift to State 145
+... ; Stmt ; writeln ( Expr ,    | ... 53 42 76 98 145    | calc            | Shift to State 67
+...Stmt ; writeln ( Expr , id    | ... 42 76 98 145 67    | )               | Reduce by Rule 53 (ActualParams -> epsilon)
+...n ( Expr , id ActualParams    | ...76 98 145 67 124    | )               | Reduce by Rule 101 (FactorIdentTail -> ActualParams )
+... Expr , id FactorIdentTail    | ...76 98 145 67 125    | )               | Reduce by Rule 93 (Factor -> id FactorIdentTail )
+... ; writeln ( Expr , Factor    | ... 42 76 98 145 62    | )               | Reduce by Rule 87 (FactorTail -> epsilon)
+...( Expr , Factor FactorTail    | ...76 98 145 62 103    | )               | Reduce by Rule 85 (Term -> Factor FactorTail )
+...mt ; writeln ( Expr , Term    | ... 42 76 98 145 64    | )               | Reduce by Rule 81 (TermTail -> epsilon)
+...eln ( Expr , Term TermTail    | ...76 98 145 64 119    | )               | Reduce by Rule 79 (SimpleExpr -> Term TermTail )
+...riteln ( Expr , SimpleExpr    | ... 42 76 98 145 63    | )               | Reduce by Rule 72 (RelOpExpr -> epsilon)
+...xpr , SimpleExpr RelOpExpr    | ...76 98 145 63 111    | )               | Reduce by Rule 70 (Expr -> SimpleExpr RelOpExpr )
+...mt ; writeln ( Expr , Expr    | ...42 76 98 145 170    | )               | Reduce by Rule 56 (ExprListTail -> epsilon)
+...( Expr , Expr ExprListTail    | ...6 98 145 170 182    | )               | Reduce by Rule 55 (ExprListTail -> , Expr ExprListTail )
+...riteln ( Expr ExprListTail    | ... 53 42 76 98 144    | )               | Reduce by Rule 54 (ExprList -> Expr ExprListTail )
+... Stmt ; writeln ( ExprList    | ... 96 53 42 76 132    | )               | Shift to State 158
+...tmt ; writeln ( ExprList )    | ...53 42 76 132 158    | ;               | Reduce by Rule 57 (WriteStmt -> writeln ( ExprList ) )
+... ; Stmt ; Stmt ; WriteStmt    | ...3 96 53 96 53 34    | ;               | Reduce by Rule 45 (SimpleStmt -> WriteStmt )
+...; Stmt ; Stmt ; SimpleStmt    | ...3 96 53 96 53 29    | ;               | Reduce by Rule 42 (Stmt -> SimpleStmt )
+... Stmt ; Stmt ; Stmt ; Stmt    | ...3 96 53 96 53 96    | ;               | Shift to State 53
+...tmt ; Stmt ; Stmt ; Stmt ;    | ...6 53 96 53 96 53    | writeln         | Shift to State 42
+...mt ; Stmt ; Stmt ; writeln    | ...3 96 53 96 53 42    | (               | Shift to State 76
+... ; Stmt ; Stmt ; writeln (    | ...6 53 96 53 42 76    | Flag condition:  | Shift to State 70
+... ; Stmt ; writeln ( string    | ...3 96 53 42 76 70    | ,               | Reduce by Rule 95 (Factor -> string )
+... ; Stmt ; writeln ( Factor    | ...3 96 53 42 76 62    | ,               | Reduce by Rule 87 (FactorTail -> epsilon)
+...riteln ( Factor FactorTail    | ... 53 42 76 62 103    | ,               | Reduce by Rule 85 (Term -> Factor FactorTail )
+...mt ; Stmt ; writeln ( Term    | ...3 96 53 42 76 64    | ,               | Reduce by Rule 81 (TermTail -> epsilon)
+... ; writeln ( Term TermTail    | ... 53 42 76 64 119    | ,               | Reduce by Rule 79 (SimpleExpr -> Term TermTail )
+...tmt ; writeln ( SimpleExpr    | ...3 96 53 42 76 63    | ,               | Reduce by Rule 72 (RelOpExpr -> epsilon)
+...eln ( SimpleExpr RelOpExpr    | ... 53 42 76 63 111    | ,               | Reduce by Rule 70 (Expr -> SimpleExpr RelOpExpr )
+...mt ; Stmt ; writeln ( Expr    | ...3 96 53 42 76 98    | ,               | Shift to State 145
+... ; Stmt ; writeln ( Expr ,    | ... 53 42 76 98 145    | flag            | Shift to State 67
+...Stmt ; writeln ( Expr , id    | ... 42 76 98 145 67    | )               | Reduce by Rule 53 (ActualParams -> epsilon)
+...n ( Expr , id ActualParams    | ...76 98 145 67 124    | )               | Reduce by Rule 101 (FactorIdentTail -> ActualParams )
+... Expr , id FactorIdentTail    | ...76 98 145 67 125    | )               | Reduce by Rule 93 (Factor -> id FactorIdentTail )
+... ; writeln ( Expr , Factor    | ... 42 76 98 145 62    | )               | Reduce by Rule 87 (FactorTail -> epsilon)
+...( Expr , Factor FactorTail    | ...76 98 145 62 103    | )               | Reduce by Rule 85 (Term -> Factor FactorTail )
+...mt ; writeln ( Expr , Term    | ... 42 76 98 145 64    | )               | Reduce by Rule 81 (TermTail -> epsilon)
+...eln ( Expr , Term TermTail    | ...76 98 145 64 119    | )               | Reduce by Rule 79 (SimpleExpr -> Term TermTail )
+...riteln ( Expr , SimpleExpr    | ... 42 76 98 145 63    | )               | Reduce by Rule 72 (RelOpExpr -> epsilon)
+...xpr , SimpleExpr RelOpExpr    | ...76 98 145 63 111    | )               | Reduce by Rule 70 (Expr -> SimpleExpr RelOpExpr )
+...mt ; writeln ( Expr , Expr    | ...42 76 98 145 170    | )               | Reduce by Rule 56 (ExprListTail -> epsilon)
+...( Expr , Expr ExprListTail    | ...6 98 145 170 182    | )               | Reduce by Rule 55 (ExprListTail -> , Expr ExprListTail )
+...riteln ( Expr ExprListTail    | ... 53 42 76 98 144    | )               | Reduce by Rule 54 (ExprList -> Expr ExprListTail )
+... Stmt ; writeln ( ExprList    | ... 96 53 42 76 132    | )               | Shift to State 158
+...tmt ; writeln ( ExprList )    | ...53 42 76 132 158    | ;               | Reduce by Rule 57 (WriteStmt -> writeln ( ExprList ) )
+... ; Stmt ; Stmt ; WriteStmt    | ...3 96 53 96 53 34    | ;               | Reduce by Rule 45 (SimpleStmt -> WriteStmt )
+...; Stmt ; Stmt ; SimpleStmt    | ...3 96 53 96 53 29    | ;               | Reduce by Rule 42 (Stmt -> SimpleStmt )
+... Stmt ; Stmt ; Stmt ; Stmt    | ...3 96 53 96 53 96    | ;               | Shift to State 53
+...tmt ; Stmt ; Stmt ; Stmt ;    | ...6 53 96 53 96 53    | end             | Reduce by Rule 47 (SimpleStmt -> epsilon)
+...; Stmt ; Stmt ; SimpleStmt    | ...3 96 53 96 53 29    | end             | Reduce by Rule 42 (Stmt -> SimpleStmt )
+... Stmt ; Stmt ; Stmt ; Stmt    | ...3 96 53 96 53 96    | end             | Reduce by Rule 41 (StmtListTail -> epsilon)
+...; Stmt ; Stmt StmtListTail    | ... 53 96 53 96 142    | end             | Reduce by Rule 40 (StmtListTail -> ; Stmt StmtListTail )
+...; Stmt ; Stmt StmtListTail    | ... 53 96 53 96 142    | end             | Reduce by Rule 40 (StmtListTail -> ; Stmt StmtListTail )
+...; Stmt ; Stmt StmtListTail    | ... 53 96 53 96 142    | end             | Reduce by Rule 40 (StmtListTail -> ; Stmt StmtListTail )
+...; Stmt ; Stmt StmtListTail    | ... 53 96 53 96 142    | end             | Reduce by Rule 40 (StmtListTail -> ; Stmt StmtListTail )
+...n Stmt ; Stmt StmtListTail    | ... 11 30 53 96 142    | end             | Reduce by Rule 40 (StmtListTail -> ; Stmt StmtListTail )
+...rt begin Stmt StmtListTail    | 0 2 3 4 6 11 30 52     | end             | Reduce by Rule 39 (StmtList -> Stmt StmtListTail )
+... ; DeclPart begin StmtList    | 0 2 3 4 6 11 31        | end             | Shift to State 54
+...eclPart begin StmtList end    | 0 2 3 4 6 11 31 54     | .               | Reduce by Rule 38 (CompoundStmt -> begin StmtList end )
+...id ; DeclPart CompoundStmt    | 0 2 3 4 6 10           | .               | Shift to State 23
+... ; DeclPart CompoundStmt .    | 0 2 3 4 6 10 23        | $               | Reduce by Rule 1 (Program -> program id ; DeclPart CompoundStmt . )
+$ Program                        | 0 1                    | $               | ACCEPT
+====================================================================================================
+
